@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
+import moment from 'moment';
 
 import { Authenticator } from '@aws-amplify/ui-react'
 import '@aws-amplify/ui-react/styles.css'
 
 const client = generateClient<Schema>();
+const getCurrentDateTime = () => {
+  return moment().format('YYYY-MM-DD HH:mm:ss');
+}
 
 function App() {
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
@@ -17,7 +21,7 @@ function App() {
   }, []);
 
   function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
+    client.models.Todo.create({ content: window.prompt("Todo content"), isDone: true, duedate: getCurrentDateTime(), env: 'domain' });
   }
 
   function deleteTodo(id: string) {
