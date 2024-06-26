@@ -13,7 +13,7 @@ const schema = a.schema({
       isDone: a.boolean(),
       duedate: a.string(),
       env: a.string(),
-    }).authorization(allow => [allow.owner()]),
+    }).authorization(allow => [allow.group('D3ClarityReadOnly').to(['read']), allow.group('D3ClarityDevelopers')]),
 });
 
 export type Schema = ClientSchema<typeof schema>;

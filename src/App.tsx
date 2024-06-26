@@ -21,7 +21,7 @@ function App() {
   }, []);
 
   function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content"), isDone: true, duedate: getCurrentDateTime(), env: 'domain' });
+    client.models.Todo.create({ content: window.prompt("Todo content"), isDone: true, duedate: getCurrentDateTime(), env: 'domain'});
   }
 
   function deleteTodo(id: string) {
