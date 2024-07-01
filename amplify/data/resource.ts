@@ -13,7 +13,9 @@ const schema = a.schema({
       isDone: a.boolean(),
       duedate: a.string(),
       env: a.string(),
-    }).authorization(allow => [allow.group('D3ClarityReadOnly').to(['read']), allow.group('D3ClarityDevelopers')]),
+    }).authorization(allow => [allow.group('D3ClarityReadOnly').to(['read']), allow.group('D3ClarityDevelopers'), allow.ownerDefinedIn('author')]),
+    //}).authorization(allow => [allow.group('D3ClarityReadOnly').to(['read']), allow.group('D3ClarityDevelopers'), allow.ownerDefinedIn('author'), allow.groupDefinedIn('group')]),
+
 });
 
 export type Schema = ClientSchema<typeof schema>;
